@@ -1,24 +1,24 @@
-_Continuous deployment with a HTTP host router, basically a wrapper for Bouncy/Fleet/Seaport by [@substack](https://github.com/substack)._  
+_Continuous deployment with a HTTP host router, basically a wrapper for Bouncy/Fleet/Seaport by [@substack](https://github.com/substack). Currently doesn't support one of the best features of fleet/propagit - multiple drones._  
   
-Switch out ```example.com``` for your domain.  
-
 ###On the server:
 Make sure ports 5000, 7000, 7001 are open.  
 ```npm install fleeted```  
 ```node ./node_modules/fleeted/index.js```  
 
-  
 ###Local machine - install [fleet](https://github.com/substack/fleet) by [@substack](https://github.com/substack):
 ```[sudo] npm install -g fleet```  
  
-Add a new remote to a git repo (use the app.js example):  
-```fleet remote add default --hub=example.com:7000 --secret=beepboop```
+Add a new remote to a git repo (use the app.js example, switch ```SERVER_IP``` for yours):  
+```fleet remote add default --hub=SERVER_IP:7000 --secret=beepboop```
 
 Deploy:  
 ```fleet deploy```  
 
 Spawn a process:  
 ```fleet spawn -- node app.js```  
+
+Test (switch ```SERVER_IP``` for yours):  
+```curl -H host:example.com SERVER_IP:5000```
 
 You can find more ```fleet``` commands [here](https://github.com/substack/fleet).  
 
