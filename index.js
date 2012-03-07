@@ -16,7 +16,7 @@ var winston = require('winston');
 var log = new (winston.Logger)({
   transports: [
     new (winston.transports.Console)({colorize: true}),
-    new (winston.transports.File)({filename: 'fleeted.log', timestamp: true})
+    new (winston.transports.File)({filename: __dirname + '/fleeted.log', timestamp: true})
   ]
 });
 
