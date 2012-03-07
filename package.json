@@ -1,5 +1,5 @@
 {
-  "name": "fleeted",
+  "name": "flotilla",
   "version": "0.0.2",
   "description": "Continuous deployment with a HTTP host router, based on Bouncy/Fleet/Seaport by @substack",
   "keywords": [
@@ -17,11 +17,11 @@
     "winston": "0.5.10"
   },
   "bin": {
-    "fleeted": "./bin/fleeted"
+    "flotilla": "./bin/flotilla"
   },
   "repository": {
     "type": "git",
-    "url": "http://github.com/bradleyg/fleeted.git"
+    "url": "http://github.com/bradleyg/flotilla.git"
   },
   "engines": {
     "node": ">= 0.6.0"
