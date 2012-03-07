@@ -57,7 +57,8 @@ var ports = seaport.createServer().listen(6000);
 // proxy server
 var createProxy = function() {
   bouncy(function (req, bounce) {
-      var ps = ports.query(req.headers.host);
+      var host = req.headers.host.split(':')[0];
+      var ps = ports.query(host);
   
       if (ps.length === 0) {
           var res = bounce.respond();
