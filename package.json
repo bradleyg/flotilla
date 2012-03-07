@@ -16,6 +16,9 @@
     "seaport": "0.6.0",
     "winston": "0.5.10"
   },
+  "bin": {
+    "fleeted": "./bin/fleeted"
+  },
   "repository": {
     "type": "git",
     "url": "http://github.com/bradleyg/fleeted.git"
