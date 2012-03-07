@@ -20,7 +20,7 @@ mkdirp.sync('flotilla');
 
 // args
 var argv = require('optimist')
-  .usage('Usage: flotilla --proxyPort=80 --hubPort=7000 --seaPort=6000 --secret=beepboop')
+  .usage('Usage: flotilla --proxyPort=8000 --hubPort=7000 --seaPort=6000 --secret=beepboop')
   .demand(['proxyPort', 'hubPort', 'seaPort', 'secret'])
   .argv;
 
