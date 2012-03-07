@@ -52,7 +52,7 @@ var spawnFleet = function(type) {
 }
 
 // seaport server
-var ports = seaport.createServer().listen(6000);
+var ports = seaport.createServer().listen(seaPort);
 
 // proxy server
 var createProxy = function() {
