@@ -1,40 +1,49 @@
 // config
-var proxyPort = 5000;
-var seaPort = 6000;
-var hubPort = 7000;
-var secret = 'beepboop';
-var hubDir = __dirname + '/hub';
-var droneDir = __dirname + '/drone';
+var hubDir = 'flotilla/hub';
+var droneDir = 'flotilla/drone';
+var logFile = 'flotilla/flotilla.log';
 
 // modules
 var spawn = require('child_process').spawn;
 var seaport = require('seaport');
 var bouncy = require('bouncy');
 var winston = require('winston');
+var mkdirp = require('mkdirp');
 
-// logs
-var log = new (winston.Logger)({
-  transports: [
-    new (winston.transports.Console)({colorize: true}),
-    new (winston.transports.File)({filename: __dirname + '/flotilla.log', timestamp: true})
-  ]
-});
+// log setup
+var consoleTrans = new winston.transports.Console({colorize: true});
+var winTrans = new winston.transports.File({filename: logFile, timestamp: true});
+var log = new winston.Logger({transports: [consoleTrans, winTrans]});
+
+// create a dir to work from
+mkdirp.sync('flotilla');
+
+// args
+var argv = require('optimist')
+  .usage('Usage: flotilla --proxyPort=80 --hubPort=7000 --seaPort=6000 --secret=beepboop')
+  .demand(['proxyPort', 'hubPort', 'seaPort', 'secret'])
+  .argv;
 
 // spawn args
 var args = {
   hub: [
     '--basedir=' + hubDir, 
-    '--port=' + hubPort, 
-    '--secret=' + secret
+    '--port=' + argv.hubPort, 
+    '--secret=' + argv.secret
   ],
   drone: [
     '--basedir=' + droneDir, 
-    '--hub=localhost:' + hubPort, 
-    '--secret=' + secret
+    '--hub=localhost:' + argv.hubPort, 
+    '--secret=' + argv.secret
   ]
 }
 
-// spawn the fleet commands
+// helpers
+var trim = function(string) {
+  return string.toString().replace(/(\r\n|\n|\r)/gm,"");
+}
+
+// spawn the fleet servers
 var spawnFleet = function(type) {
   var child = spawn(__dirname + '/node_modules/fleet/bin/' + type + '.js', args[type]);  
   
@@ -52,7 +61,7 @@ var spawnFleet = function(type) {
 }
 
 // seaport server
-var ports = seaport.createServer().listen(seaPort);
+var ports = seaport.createServer().listen(argv.seaPort);
 
 // proxy server
 var createProxy = function() {
@@ -67,12 +76,7 @@ var createProxy = function() {
       else {
           bounce(ps[0].host, ps[0].port);
       }
-  }).listen(proxyPort);  
-}
-
-// helper functions
-var trim = function(string) {
-  return string.toString().replace(/(\r\n|\n|\r)/gm,"");
+  }).listen(argv.proxyPort);  
 }
 
 spawnFleet('hub');
@@ -80,9 +84,9 @@ spawnFleet('drone');
 createProxy();
 
 log.info('-----------------------------');
-log.info('Bouncy proxy running on port ' + proxyPort);
-log.info('Seaport running on port ' + seaPort);
-log.info('Hub running on port ' + hubPort);
-log.info('Propagit running on port ' + (hubPort + 1));
+log.info('Bouncy proxy running on port ' + argv.proxyPort);
+log.info('Seaport running on port ' + argv.seaPort);
+log.info('Hub running on port ' + argv.hubPort);
+log.info('Propagit running on port ' + (argv.hubPort + 1));
 log.info('Drone running');
 log.info('-----------------------------');
