@@ -2,8 +2,8 @@ _Continuous deployment with a HTTP host router, basically a wrapper for Bouncy/F
   
 ###On the server:
 Make sure ports 5000, 7000, 7001 are open.  
-```npm install fleeted```  
-```node ./node_modules/fleeted/index.js```  
+```[sudo] npm install -g fleeted```  
+```[sudo] fleeted```  
 
 ###Local machine - install [fleet](https://github.com/substack/fleet) by [@substack](https://github.com/substack):
 ```[sudo] npm install -g fleet```  
