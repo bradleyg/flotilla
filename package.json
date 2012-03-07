@@ -1,6 +1,6 @@
 {
   "name": "fleeted",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Continuous deployment with a HTTP host router, based on Bouncy/Fleet/Seaport by @substack",
   "keywords": [
     "bouncy",
