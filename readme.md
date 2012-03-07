@@ -33,7 +33,7 @@ var server = http.createServer(function (req, res) {
   res.end('Hello World');
 })
 
-ports.service('example.com', function (port, ready) { // use the domain name you want to deploy
+ports.service('example.com', function (port, ready) { // use the domain name you want to deploy, will have to be pointed at your server
   server.listen(port, ready);
 });
 ```
