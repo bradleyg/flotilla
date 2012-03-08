@@ -2,27 +2,30 @@ _Continuous deployment with a HTTP host router, basically a wrapper for Bouncy/F
 
 ###On the server:  
 Install ```flotilla```:   
-```[sudo] npm install -g flotilla```  
+```$ [sudo] npm install -g flotilla```  
 
 From a folder where you want ```flotilla``` to live, start with options (to start on any privileged ports you may need SUDO):  
-```flotilla --proxyPort=8000 --hubPort=7000 --seaPort=6000 --secret=beepboop```  
+```$ flotilla --proxyPort=8000 --hubPort=7000 --seaPort=6000 --secret=beepboop --dir=flotilla```  
 
-This will create a folder in the current directory called ```flotilla``` which will contain the hub, drone and logfile and starts the services required for ```flotilla```.
+This will create a folder in the current directory name via the ```--dir``` option which will contain the hub, drone and logfile and also starts the services required for ```flotilla```.  
+
+If you have already run ```flotilla``` before, you can start it again from within the created folder with no options (options are saved on first run, to overwrite just pass the options again).  
+```$ flotilla```
 
 ###Local machine - install [fleet](https://github.com/substack/fleet) by [@substack](https://github.com/substack):
-```[sudo] npm install -g fleet```  
+```$ [sudo] npm install -g fleet```  
 
 Add a new remote to a git repo (use the app.js example, switch ```SERVER_IP``` for yours):  
-```fleet remote add default --hub=SERVER_IP:7000 --secret=beepboop``` (hubPort=7000)  
+```$ fleet remote add default --hub=SERVER_IP:7000 --secret=beepboop``` (hubPort=7000)  
 
 Deploy:  
-```fleet deploy```  
+```$ fleet deploy```  
 
 Spawn a process:  
-```fleet spawn -- node app.js```  
+```$ fleet spawn -- node app.js```  
 
 Test (switch ```SERVER_IP``` for yours):  
-```curl -H host:example.com SERVER_IP:8000``` (proxyPort=8000)  
+```$ curl -H host:example.com SERVER_IP:8000``` (proxyPort=8000)  
 
 You can find more ```fleet``` commands [here](https://github.com/substack/fleet).  
 
