@@ -1,6 +1,6 @@
 {
   "name": "flotilla",
-  "version": "0.0.7",
+  "version": "0.0.9",
   "description": "Continuous deployment with a HTTP host router, based on Bouncy/Fleet/Seaport by @substack",
   "keywords": [
     "bouncy",
