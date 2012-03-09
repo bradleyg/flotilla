@@ -9,6 +9,9 @@ From a folder where you want ```flotilla``` to live, start with options (to star
 
 This will create a folder in the current directory name via the ```--dir``` option which will contain the hub, drone and logfile and also starts the services required for ```flotilla```.  
 
+If you have already run ```flotilla``` before, you can start it again from within the created folder with no options (options are saved on first run, to overwrite just pass the options again).
+```$ flotilla start```
+
 ###Local machine - install [fleet](https://github.com/substack/fleet) by [@substack](https://github.com/substack):
 ```$ [sudo] npm install -g fleet```  
 
