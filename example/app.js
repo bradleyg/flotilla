@@ -7,6 +7,6 @@ var server = http.createServer(function (req, res) {
   res.end('Hello World');
 })
 
-ports.service('example.com', function (port, ready) {
+ports.service('webservice@1.2.3', function (port, ready) {
   server.listen(port, ready);
 });
