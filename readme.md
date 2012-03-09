@@ -34,16 +34,29 @@ You can find more ```fleet``` commands [here](https://github.com/substack/fleet)
 
 ###Example App:
 ```javascript
+
+// package.json
+// {
+//   "name": "example",
+//   "version": "1.0.1",
+//   "dependencies": {
+//     "seaport": "0.6.0"
+//   }
+// }
+
+// app.js
 var seaport = require('seaport');
-var ports = seaport.connect('localhost', 6000); // (seaPort=6000)
 var http = require('http');
+var pkg = require('./package.json');
+
+var ports = seaport.connect('localhost', 6000);
 
 var server = http.createServer(function (req, res) {
   res.writeHead(200, {'Content-Type': 'text/plain'});
   res.end('Hello World');
 })
 
-ports.service('webservice@1.2.3', function (port, ready) { // use the domain name you want to deploy, will have to be pointed at your server
+ports.service(pkg.name + '@' + pkg.version, function (port, ready) {
   server.listen(port, ready);
 });
 ```
