@@ -1,8 +1,10 @@
+#!/usr/bin/env node
+
 // my modules
-var options = require('./lib/options');
-var proxy = require('./lib/proxy');
-var fleet = require('./lib/fleet');
-var logger = require('./lib/logger');
+var options = require('../lib/options');
+var bouncy = require('../lib/bouncy');
+var fleet = require('../lib/fleet');
+var logger = require('../lib/logger');
 
 // args
 var opts = options.get();
@@ -11,7 +13,7 @@ var opts = options.get();
 var log = logger.create(opts);
 
 // start the proxy
-proxy.start(opts);
+bouncy.start(opts);
 
 // start fleet
 fleet.start(opts, 'hub');

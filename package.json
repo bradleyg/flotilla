@@ -1,6 +1,6 @@
 {
   "name": "flotilla",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Continuous deployment with a HTTP host router, based on Bouncy/Fleet/Seaport by @substack",
   "keywords": [
     "bouncy",
@@ -16,10 +16,13 @@
     "seaport": "0.6.0",
     "optimist": "0.3.1",
     "winston": "0.5.10",
-    "mkdirp": "0.3.0"
+    "mkdirp": "0.3.0",
+    "dnode": "0.9.6"
   },
   "bin": {
-    "flotilla": "./bin/flotilla"
+    "flotilla": "./bin/command.sh",
+    "flotilla-start": "./bin/start.js",
+    "flotilla-proxy": "./bin/proxy.js"
   },
   "repository": {
     "type": "git",

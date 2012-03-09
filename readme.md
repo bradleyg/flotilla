@@ -24,6 +24,9 @@ Deploy:
 Spawn a process:  
 ```$ fleet spawn -- node app.js```  
 
+Glue a domain to a service:  
+```$ fleet exec -- flotilla proxy add --domain=example.com --service=webservice@1.2.3```  
+
 Test (switch ```SERVER_IP``` for yours):  
 ```$ curl -H host:example.com SERVER_IP:8000``` (proxyPort=8000)  
 
@@ -40,7 +43,7 @@ var server = http.createServer(function (req, res) {
   res.end('Hello World');
 })
 
-ports.service('example.com', function (port, ready) { // use the domain name you want to deploy, will have to be pointed at your server
+ports.service('webservice@1.2.3', function (port, ready) { // use the domain name you want to deploy, will have to be pointed at your server
   server.listen(port, ready);
 });
 ```
