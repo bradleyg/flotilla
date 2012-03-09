@@ -1,0 +1,7 @@
+{
+  "name": "example",
+  "version": "1.0.1",
+  "dependencies": {
+    "seaport": "0.6.0"
+  }
+}
