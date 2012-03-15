@@ -5,7 +5,7 @@ Install ```flotilla```:
 ```$ [sudo] npm install -g flotilla```  
 
 From a folder where you want ```flotilla``` to live, start with options (to start on any privileged ports you may need SUDO):  
-```$ flotilla start --proxyPort=8000 --hubPort=7000 --seaPort=6000 --secret=beepboop --dir=flotilla```  
+```$ flotilla start --proxyPort=8000 --hubPort=7000 --seaPort=6000 --secret=keyboardmouse --dir=flotilla```  
 
 This will create a folder in the current directory name via the ```--dir``` option which will contain the hub, drone and logfile and also starts the services required for ```flotilla```.  
 
@@ -16,7 +16,7 @@ If you have already run ```flotilla``` before, you can start it again from withi
 ```$ [sudo] npm install -g fleet```  
 
 Add a new remote to a git repo (use the app.js example, switch ```SERVER_IP``` for yours):  
-```$ fleet remote add default --hub=SERVER_IP:7000 --secret=beepboop``` (hubPort=7000)  
+```$ fleet remote add default --hub=SERVER_IP:7000 --secret=keyboardmouse``` (hubPort=7000)  
 
 Deploy:  
 ```$ fleet deploy```  
