@@ -15,7 +15,7 @@ If you have already run ```flotilla``` before, you can start it again from withi
 ###Local machine - install [fleet](https://github.com/substack/fleet) by [@substack](https://github.com/substack):
 ```$ [sudo] npm install -g fleet```  
 
-Add a new remote to a git repo (use the app.js example, switch ```SERVER_IP``` for yours):  
+Add a new remote to an existing git repo (use the app.js example, switch ```SERVER_IP``` for yours):  
 ```$ fleet remote add default --hub=SERVER_IP:7000 --secret=keyboardmouse``` (hubPort=7000)  
 
 Deploy:  
@@ -24,26 +24,33 @@ Deploy:
 Spawn a process:  
 ```$ fleet spawn -- node app.js```  
 
-Glue a domain to a service:  
-```$ fleet exec -- flotilla proxy add --domain=example.com --service=example@1.0.x```  
+Glue a domain to a version:  
+```$ fleet exec -- flotilla proxy add --domain=example.com --version=example@1.0.x```  
 
 Test (switch ```SERVER_IP``` for yours):  
 ```$ curl -H host:example.com SERVER_IP:8000``` (proxyPort=8000)  
 
 You can find more ```fleet``` commands [here](https://github.com/substack/fleet).  
+  
+###Commands:
+```flotilla start --proxyPort=PORT --hubPort=PORT --seaPort=PORT --secret=SECRET --dir=DIR_NAME```
+```flotilla proxy add --domain=DOMAIN --version=VERSION```  
+```flotilla proxy rm --domain=DOMAIN```  
+```flotilla proxy ls```
 
 ###Example App:
 ```javascript
-
 // package.json
-// {
-//   "name": "example",
-//   "version": "1.0.1",
-//   "dependencies": {
-//     "seaport": "0.6.0"
-//   }
-// }
-
+{
+  "name": "example",
+  "version": "1.0.1",
+  "dependencies": {
+    "seaport": "0.6.0"
+  }
+}
+```
+  
+```javascript
 // app.js
 var seaport = require('seaport');
 var http = require('http');
