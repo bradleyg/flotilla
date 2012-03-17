@@ -3,13 +3,13 @@
 // modules
 var dnode = require('dnode');
 
-var usage = 'Usage:\n  flotilla proxy add --domain=example.com --service=example@1.2.3\n  flotilla proxy rm --domain=example.com\n  flotilla proxy ls';
+var usage = 'Usage:\n  flotilla proxy add --domain=example.com --version=example@1.2.3\n  flotilla proxy rm --domain=example.com\n  flotilla proxy ls';
             
 var cmd = process.argv[2] || null;
 
 // required args
 var demand = {
-  add: ['domain', 'service'],
+  add: ['domain', 'version'],
   rm: ['domain'],
   ls: []
 }
