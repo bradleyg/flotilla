@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/bradleyg/flotilla.png)](http://travis-ci.org/bradleyg/flotilla)
 _Continuous deployment with a HTTP host router, basically a wrapper for Bouncy/Fleet/Seaport by [@substack](https://github.com/substack). Currently doesn't support one of the best features of fleet/propagit - multiple drones._  
 
 ###On the server:  
